@@ -1,2 +1,2 @@
 # GetFire
-GetFire API
+GetFire
