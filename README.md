@@ -15,3 +15,6 @@ Init:
 var chat = CHAT({topic: "test", startOpen: true});
 
 ```
+
+---
+©2012-2018 GetFire.net All rights reserved.
