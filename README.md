@@ -1,5 +1,5 @@
 # GetFire
-GetFire
+Fire chat API
 
 Include:
 
