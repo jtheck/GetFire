@@ -14,7 +14,6 @@ Init:
 ---
 ```
 var chat = CHAT({topic: "test", startOpen: true});
-
 ```
 
 
