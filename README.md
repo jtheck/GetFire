@@ -13,7 +13,7 @@ Include:
 Init:
 ---
 ```
-var chat = CHAT({topic: "test", startOpen: true});
+var chat = GETFIRE({topic: "test", startOpen: true});
 ```
 
 
