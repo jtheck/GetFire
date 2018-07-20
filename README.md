@@ -7,13 +7,13 @@ Include:
 ---
 
 ```
-<script src="https://cdn.rawgit.com/jtheck/GetFire/ba74fc56/getfire.1.0.min.js" type="text/javascript"></script>
+<script src="https://cdn.rawgit.com/jtheck/GetFire/1195f914/getfire.1.0.min.js" type="text/javascript"></script>
 ```
 
 Init:
 ---
 ```
-var chat = GETFIRE({topic: "test", startOpen: true});
+var chat = GETFIRE({topicName: "test", startOpen: true, fullHeight: false});
 ```
 
 
