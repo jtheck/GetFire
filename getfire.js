@@ -19,17 +19,21 @@
     var topicName = config.topicName || "Fire";
     var startOpen = config.startOpen || false;
     var fullHeight = config.fullHeight || false;
+    var devMode = config.devMode || false;
 
 
     var width;
     var height;
 
-    // var uri = "http://localhost:3000/";
-    // var ssl = true;
-    // var env = "dev";
-    var uri = "https://getfire.net/";
-    var ssl = document.location.protocol == "https:";
-    var env = "prod";
+    if (devMode == true) {
+      var uri = "http://localhost:3000/";
+      var ssl = true;
+      var env = "dev";
+    } else {
+      var uri = "https://getfire.net/";
+      var ssl = document.location.protocol == "https:";
+      var env = "prod";
+    }
 
 
     var ta = timeago();
@@ -52,7 +56,7 @@
 
 
     // styles
-    var styles = "#getfire_wrapper{all:revert;position:fixed;z-index:9;bottom:2px;right:2px;font-family:georgia,verdana,sans-serif;user-select:none}#getfire_topic{width:400px;height:300px;overflow:hidden;display:none}#getfire_icon{position:absolute;bottom:5px;right:5px;width:42px;height:42px;stroke:#fff;cursor:pointer;-webkit-filter:drop-shadow(1px 1px 1px #000);filter:drop-shadow(1px 1px 1px #000);transition-duration:.05s}#getfire_icon:hover{stroke:#ff00d2;transform:scale(1.2)}#getfire_icon:active{transform:scale(1.25)}#getfire_icon .ftb_fill{fill:#fff}#getfire_icon:hover .ftb_fill{fill:#000}#getfire_icon:active .ftb_fill{fill:#fff}#gf_preview{height:168px;width:252px;margin-right:-5px;margin-bottom:-5px;display:none;font-family:verdana,sans-serif;-webkit-filter:drop-shadow(1px 1px 1px #000);filter:drop-shadow(1px 1px 1px #000);stroke:#fff}#gf_preview_svg{cursor:pointer}#gf_preview_svg:hover{stroke:#ff00d2}#gf_pname{position:absolute;top:0;left:0;z-index:4;right:0;cursor:pointer;text-align:center;display:inline-block;font-size:1.2em;text-shadow:1px 1px 2px #000}#gf_pname:hover{color:#ff00d2}#gf_pcontent{position:absolute;left:20px;right:11px;top:22px;bottom:38px;padding:5px;pointer-events:none}#gf_exp{position:absolute;top:6px;right:-1px;padding-left:5px;padding-right:5px;font-size:2.4em;cursor:pointer}#gf_exp:hover{color:#d00}#gf_exp:active{color:#f30}#gf_topic_head{position:absolute;z-index:1;left:0;top:4px;right:100px;padding:6px;padding-bottom:0;font-size:1.4em;font-weight:700;font-style:italic;text-shadow:2px 2px 1px black;cursor:pointer}#gf_topic_head:hover{color:#d00}#gf_topic_head:active{color:#ff00d2}#gf_card{position:absolute;z-index:3;top:6px;right:3px;width:125px;height:50px;color:#fff;font-size:.9em;text-shadow:1px 1px 1px #333;background:rgba(0,0,0,.8);border:1px solid #777;cursor:pointer}#gf_card:hover{border-color:#fff}#gf_card_name{position:absolute;bottom:1px;right:3px}#gf_tsb{position:absolute;right:137px;top:37px;z-index:1;cursor:pointer;font-size:1em;-webkit-transition:all 0.4s;transition:all 0.4s}#gf_tsb:hover{color:#ff00d2;-webkit-transform:rotate(270deg);transform:rotate(270deg)}#gf_tsb:active{color:yellow;font-weight:700}#gf_topic_content{position:relative;background:rgba(0,0,0,.84);top:35px;height:calc(100% - 37px);border:1px solid #777;font-family:verdana,sans-serif}#gf_topic_content:hover{border-color:#fff}#gf_settings{position:absolute;right:0;top:0;bottom:0;z-index:2;background-color:rgba(0,0,0,.84);width:60%;border-left:1px solid #333;padding:9px;display:none}#gf_watching{padding-top:23px;font-size:.8em}#gf_ideal{position:absolute;top:69px;padding:5px;left:8px;right:8px;font-size:.9em;text-align:right;max-height:50%;border:1px solid #666;overflow:auto}#gf_tshare{position:absolute;bottom:10px;right:16px;text-decoration:none;color:#fff;font-size:1.1em;padding:4px}#gf_fshare{position:absolute;bottom:10px;right:45px;text-decoration:none;color:#fff;font-size:1.1em;padding:4px}#gf_message_entry{font-family:inherit;font-size:.9em;position:absolute;padding-left:3px;padding-top:2px;padding-right:3px;width:76%;left:2px;bottom:2px;height:2.1em;float:left;color:#fff;background-color:#000;border:1px solid #555;border-radius:3px;resize:none;z-index:1;user-select:auto;word-break:break-word}#gf_message_entry:hover{border:1px solid #eee;height:3.2em}#gf_message_entry:focus{border:1px solid #eee;height:3.2em}#gf_submit{position:absolute;bottom:1px;right:1px;width:20%;height:23px;color:#fff;background-color:#000;cursor:pointer;border-radius:3px}#gf_messages{position:absolute;top:0;bottom:26px;left:0;right:0;padding-top:22px;padding-bottom:22px;overflow-y:auto;overflow-x:hidden}.gf_am{text-align:center;padding:6px}.gf_msg{position:relative;padding:1px;word-break:break-word;padding-left:13px;padding-right:7px;text-indent:-8px}.gf_msg:hover{background-color:rgba(255,255,255,.25)}.gf_msg a{text-decoration:none;font-size:.9em;color:#0FD}.gf_msg a:hover{color:#f30}.gf_pMsg{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:.9em;padding-bottom:1px}.gf_pMsg a{color:#0FD;text-decoration:none}.gf_mResponse{text-align:right}.gf_mName{cursor:pointer}.gf_mHovermod{background:rgba(255,255,255,.25)}.gf_mDupe{position:absolute;bottom:100%;width:80%;left:-15px}.gf_mDupe .gf_msg{background-color:black}#gf_mControls{display:none;position:absolute;top:-10px;right:0}#gf_mTime{color:#00ffa3;font-size:.9em;float:right;padding-right:44px;white-space:nowrap}#gf_mRespond{text-align:right;position:absolute;right:0;top:-16px;padding:4px;-webkit-transition:all 0.22s;transition:all 0.22s;cursor:pointer;width:28px;height:28px;fill:#fff;-webkit-filter:drop-shadow(1px 1px 1px #000);filter:drop-shadow(1px 1px 1px #000)}#gf_mRespond:hover{fill:#ff00d2;-webkit-transform:rotate(360deg);transform:rotate(360deg)}#gf_mRespond:active{fill:yellow}#gf_responding{position:absolute;display:none;bottom:55px;left:5px;background:black;padding:2px;border:1px solid #0de;border-radius:2px}#gf_tw{font:.9em Arial;white-space:nowrap;visibility:hidden}#gf_ava{position:absolute;display:none;width:150px;height:60px;z-index:9;background-color:rgba(0,0,0,.9);border:1px solid #fff;background-repeat:no-repeat;cursor:pointer}#gf_ava:active{border-color:#ff00d2!important}.gf_scroll::-webkit-scrollbar{width:9px}.gf_scroll::-webkit-scrollbar-thumb{background:#1c1c1c;border:1px solid #888;-webkit-border-radius:9px}.gf_scroll::-webkit-scrollbar-thumb:hover{background:#291C1C}.gf_scroll::-webkit-scrollbar-thumb:active{background:#37181B}";
+    var styles = "";
     var $style = document.createElement('style');
     $style.innerHTML = styles;
     document.head.appendChild($style);
@@ -221,6 +225,7 @@
     // FORM
     var $form = document.createElement("form");
     $form.setAttribute("autocomplete", "off");
+    $form.setAttribute("onsubmit", "alert('ayo');");
     // text area
     var $input = document.createElement("textarea");
     $input.setAttribute('placeholder', "compose your message here");
@@ -230,6 +235,8 @@
     var $submit = document.createElement("input");
     $submit.setAttribute('type',"submit");
     $submit.setAttribute('value',"Send");
+    $submit.setAttribute('name',"sendB");
+    // $submit.setAttribute('data-disable-with', "sending...");
     // $submit.style.cssText = styles.gfSubmitId;//setAttribute("style", styles.gfSubmitId);
     $submit.id = "gf_submit";
     $submit.onclick = function() {
@@ -247,7 +254,10 @@
     $form.append($submit);
     GETFIRE.$topic.append($form);
 
+function ayo(){
+alert('SHYEAH');
 
+};
 
 
 
@@ -342,6 +352,9 @@
             $watching = newDiv({id:"gf_watching", content:watching+" watching"});
             $settings.append($watching);
 
+            // most recent message
+            // var recent = JSON.parse(xhr.responseText).recent;
+
             // render messages
             var messages = JSON.parse(xhr.responseText).messages;
             for (var i=0; i<messages.length; i++) {
@@ -434,6 +447,7 @@
 // console.log(m);
       // message
       var mContent = parseMessage(m.content);
+      var mPreview = parsePreview(m.content);
       var $tMsg = newDiv({className: "gf_msg gf_hcmod", content: mContent});
       $tMsg.setAttribute("data-time", m.created_at);
       $tMsg.setAttribute("data-id", m.user_id);
@@ -444,6 +458,9 @@
       $name.classList.add("gf_mName");
       $name.classList.add("gf_hcmod");
       $name.style.color = m.color;
+      $name.title = m.name;
+
+
 
       renderPreview(mContent);
 
@@ -454,7 +471,7 @@
       }
 
       // normal message
-      if (m.response_to == "null") {
+      if (!m.response_to || m.response_to == "null") {
         $name.innerHTML = m.name+"‧ ";
         $tMsg.prepend($name);
         GETFIRE.$messages.append($tMsg);
@@ -503,19 +520,33 @@
       return $div;
     };
 
-    function parseMessage(m) {
-      m = m.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    function parsePreview(text) {
+      // TODO: cut message short before parsing links and images
+      // if (string.length > 50)
+      //      return string.substring(0,50)+'...';
+      return text;
+    };
 
-      // courtesy http://stackoverflow.com/questions/37684/how-to-replace-plain-urls-with-links
-  		var replacedText, replacePattern1, replacePattern2;
-  		//URLs starting with http://, https://, or ftp://
-  		replacePattern1 = /(\b(https?|ftp):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gim;
-  		replacedText = m.replace(replacePattern1, '<a href="$1" target="_blank" rel="noopener">$1</a>');
-  		//URLs starting with "www." (without // before it, or it'd re-link the ones done above).
-  		replacePattern2 = /(^|[^\/])(www\.[\S]+(\b|$))/gim;
-  		replacedText = replacedText.replace(replacePattern2, '$1<a href="http://$2" target="_blank" rel="noopener">$2</a>');
+    function parseMessage(text) {
+      if (!text) return "";
+      text = text.replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
-  		return replacedText;
+      // regexes
+  		var _reHttpLink = /(\b(https?|ftp):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gim;
+  		var _reWwwLink = /(^|[^\/])(www\.[\S]+(\b|$))/gim;
+      var _reImg= /https?:\/\/.*?\.(?:png|jpg|jpeg|gif|webp)/ig;
+      var _reVid = /\.(?:mp4|webm|ogg)$/i;
+
+      // replace images
+      var testText = text;
+      text = text.replace(_reImg, '<a href="$&" target="_blank"><img src="$&" class="found_image" onerror="this.onerror=null;this.src=&quot;'+uri+'/images/missing_wallpaper_tiny.jpg&quot;;" /></a>');
+      if (testText !== text) return text;
+
+      // replace links
+  		text = text.replace(_reHttpLink, '<a href="$1" target="_blank" title="$1" rel="noopener">$1</a>');
+  		text = text.replace(_reWwwLink, '$1<a href="http://$2" target="_blank" title="$1" rel="noopener">$2</a>');
+
+  		return text;
     };
 
     // global click handler
