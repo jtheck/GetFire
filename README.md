@@ -18,7 +18,8 @@ var chat = GETFIRE({topicName: "test", startOpen: true, fullHeight: false});
 
 Notes:
 ---
-Create your topic in-app on GetFire.net in the bottom-right 'topic' menu.
+Create your topic in-app on GetFire.net in the bottom-right 'topic' menu under "search".
+
 
 
 ---
