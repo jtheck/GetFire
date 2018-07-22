@@ -25,6 +25,7 @@ Notes:
 ---
 Create your own 'topic' in-app on GetFire.net in the bottom-right 'topic' menu under "search".
 
+SSL is required.
 
 
 ---
