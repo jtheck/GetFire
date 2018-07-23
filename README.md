@@ -16,8 +16,9 @@ Init:
 var chat = GETFIRE({topicName: "test", startOpen: true, fullHeight: false});
 ```
 
-Example:
+Examples:
 ---
+https://reunitethetribe.blogspot.com/
 https://mot.moe
 
 
