@@ -7,13 +7,22 @@ Include:
 ---
 
 ```
-<script src="https://cdn.rawgit.com/jtheck/GetFire/57eded32/dist/getfire.1.0.2.min.js" type="text/javascript"></script>
+<script src="https://cdn.rawgit.com/jtheck/GetFire/cf926e1d/dist/getfire.1.03.min.js" type="text/javascript"></script>
 ```
 
 Init:
 ---
 ```
-var chat = GETFIRE({topicName: "test", startOpen: true, fullHeight: false});
+var chat = GETFIRE({topicName: "test"});
+```
+
+Options:
+---
+```
+topicName: "name of topic",
+defaultName: "name of new users",
+startOpen: true/false, // Init chat already opened
+fullHeight: true/false // Init chat as full height
 ```
 
 Examples:
@@ -21,6 +30,8 @@ Examples:
 https://reunitethetribe.blogspot.com/
 
 https://mot.moe
+
+https://treha.online
 
 
 Notes:
