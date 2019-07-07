@@ -7,7 +7,7 @@ Include:
 ---
 
 ```
-<script src="https://rawcdn.githack.com/jtheck/GetFire/daac4b418c68ddd955b5eaa57f395bfcd156c78f/dist/getfire.1.04.min.js" type="text/javascript"></script>
+<script src="https://rawcdn.githack.com/jtheck/GetFire/2f3af88fab78dbd0c417a6664ffc61245391f128/dist/getfire.1.05.min.js" type="text/javascript"></script>
 ```
 
 Init:
