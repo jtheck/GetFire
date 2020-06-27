@@ -46,4 +46,4 @@ SSL is required.
 
 Contact GetFire (https://www.getfire.net/@Heck) to confirm your URL, for comments or opportunities.
 
-©2012-2018 GetFire.net All rights reserved.
+©2012-2020 GetFire.net All rights reserved.
