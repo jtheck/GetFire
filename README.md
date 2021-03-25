@@ -13,7 +13,7 @@ Include:
 Init:
 ---
 ```
-var chat = GETFIRE({topicName: "test"});
+var chat = GETFIRE({topicName: "test", defaultName: "Bobbeh"});
 ```
 
 Options:
@@ -21,10 +21,10 @@ Options:
 ```
 topicName: "name of topic",
 defaultName: "name of new users",
-startOpen: true/false, // Init chat already opened
-fullHeight: true/false, // Init chat as full height
-clickAwayIgnore: true/false, // Do not close chat when clicked away from
-clickBubbleClose: true/false // Click chat preview to close
+startOpen: true || false, // Init chat already opened
+fullHeight: true || false, // Init chat as full height
+clickAwayIgnore: true || false, // Do not close chat when clicked away from
+clickBubbleClose: true || false // Click chat preview to close
 ```
 
 Examples:
@@ -46,4 +46,4 @@ SSL is required.
 
 Contact GetFire (https://www.getfire.net/@Heck) to confirm your URL, for comments or opportunities.
 
-©2012-2020 GetFire.net All rights reserved.
+©2012-2021 GetFire.net All rights reserved.
